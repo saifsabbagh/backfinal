@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>signup Page</title>
+  <link rel="stylesheet" href="signup.css">
+ 
+<body>   
+    <header>
+        <h1><a class="menu" href="/src/static/ab/about.html">L!nK!</a></h1>
+    
+       <nav>
+           <div><a href="/src/static/ab/about.html" >About us</a></div>
+           <div><a href="login.html" >login</a></div>
+           <div><a href="#" class="active">signup</a></div>
+
+       </nav>
+    
+    </header>
+     <div class="form" action="todo.html">
+        <form  id="reg-form" >
+
+        <h3>   Sign Up</h3>
+            <div class="inside">
+       <h4> User name:   </h4>  
+<div class="placeholder">
+         <input type="id" id="name" autocomplete="off" placeholder="Enter Your id"  class="text" />
+   <br>
+</div>
+  
+
+  
+ <h4> Password: </h4>
+ <div class="placeholder">
+         <input type="password" id="password" autocomplete="off" placeholder="Enter Your Password" class="text" />
+    <br>
+ </div>
+
+   <input type="submit" value="Create Account"  class="login"/>
+
+    </div>
+   </form>
+   </div>
+         <script>
+               const form=document.getElementById("reg-form")
+               form.addEventListener('submit', registerUser)
+
+			    async function registerUser(event) {
+			   	   event.preventDefault()
+			   	    const username = document.getElementById('name').value
+				      const password = document.getElementById('password').value
+                  const result = await fetch('/api/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						username,
+						password
+					})
+				}).then((res) => res.json())
+              if(result.status==='ok'){
+
+              }else{
+                alert (result.error)
+              }
+               }
+
+       </script>
+   <section class="image">
+  
+   </section>
+</body>
+</html>
